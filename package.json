@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-loop-execute-cmd",
   "description": "循环执行指令多次",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -19,5 +19,13 @@
   },
   "dependencies": {
     "@satorijs/element": "^2.2.0"
+  },
+  "contributors": [
+    "yuuzy <adcb20090916@163.com>"
+  ],
+  "homepage": "https://github.com/Yuuzy0721/koishi-plugin-loop-execute-cmd",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuuzy0721/koishi-plugin-loop-execute-cmd.git"
   }
 }
