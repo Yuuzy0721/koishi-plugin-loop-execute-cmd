@@ -15,7 +15,7 @@ export const Config: Schema<Config> = Schema.object({
 
 export function apply(ctx: Context, cfg: Config) {
   const logger = ctx.logger('loop-execute-cmd')
-  ctx.command('for <time: number> <cmd: text>', '循环执行命令，若为小数则向下取整')
+  ctx.command('for <time: number> <cmd: text>', '循环执行命令，若为小数则向下取整', { authority: 3 })
     .alias('loop')
     .example('for 5 echo hello 输出5次 hello')
     .action(async ({ session }, time, cmd) => {
