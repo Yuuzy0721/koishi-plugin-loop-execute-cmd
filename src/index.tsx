@@ -5,10 +5,12 @@ export const name = 'loop-execute-cmd'
 
 export interface Config {
   maxTime: number
+  sleepTime: number
 }
 
 export const Config: Schema<Config> = Schema.object({
   maxTime: Schema.number().default(10).description('最大执行次数').min(5).max(25),
+  sleepTime: Schema.number().default(100).description('每次执行间隔时间/ms'),
 })
 
 export function apply(ctx: Context, cfg: Config) {
@@ -37,8 +39,14 @@ export function apply(ctx: Context, cfg: Config) {
       }
 
       const t = Math.floor(timeNum)
+      const s = cfg.sleepTime
       for (let i = 0; i < t; i++) {
-        await session.send(<execute>{cmd}</execute>)
+        try {
+          await session.send(<execute>{cmd}</execute>)
+          await ctx.sleep(s)
+        }catch (e) {
+          logger.error(e)
+        }
       }
     })
 }
