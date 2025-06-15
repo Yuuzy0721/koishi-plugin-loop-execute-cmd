@@ -1,5 +1,4 @@
 import { Context, Schema } from 'koishi'
-import {} from '@satorijs/element'
 
 export const name = 'loop-execute-cmd'
 
@@ -42,10 +41,11 @@ export function apply(ctx: Context, cfg: Config) {
       const s = cfg.sleepTime
       for (let i = 0; i < t; i++) {
         try {
-          await session.send(<execute>{cmd}</execute>)
+          session.send(<execute>{cmd}</execute>)
           await ctx.sleep(s)
         }catch (e) {
           logger.error(e)
+          return
         }
       }
     })
